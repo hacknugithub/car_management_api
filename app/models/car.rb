@@ -5,4 +5,6 @@ class Car < ApplicationRecord
   validates :year,
             numericality: { only_integer: true, greater_than_or_equal_to: 1900,
                             less_than_or_equal_to: Time.current.year }
+
+  has_many :car_maintenances
 end

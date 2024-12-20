@@ -12,9 +12,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_241_218_191_559) do
+ActiveRecord::Schema.define(version: 20_241_220_163_823) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
+
+  create_table 'car_maintenances', force: :cascade do |t|
+    t.bigint 'car_id', null: false
+    t.string 'description'
+    t.integer 'status'
+    t.datetime 'date'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['car_id'], name: 'index_car_maintenances_on_car_id'
+  end
 
   create_table 'cars', force: :cascade do |t|
     t.string 'plate_number'
@@ -23,4 +33,6 @@ ActiveRecord::Schema.define(version: 20_241_218_191_559) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
   end
+
+  add_foreign_key 'car_maintenances', 'cars'
 end
