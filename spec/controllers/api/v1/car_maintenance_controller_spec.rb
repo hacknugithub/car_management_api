@@ -51,8 +51,8 @@ RSpec.describe Api::V1::CarMaintenancesController, type: :controller do
     it 'returns the updated property on the car_maintenance' do
       car_maintenance = car_maintenances.first
       patch :update,
-          params: { id: car_maintenance.id,
-                    car_maintenance: { description: 'unique description edited by patch'} }
+            params: { id: car_maintenance.id,
+                      car_maintenance: { description: 'unique description edited by patch' } }
       expect(response).to have_http_status(:ok)
       car_maintenance.reload
       expect(car_maintenance.description).to eq('unique description edited by patch')

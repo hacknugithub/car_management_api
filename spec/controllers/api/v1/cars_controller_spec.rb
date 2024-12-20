@@ -41,6 +41,16 @@ RSpec.describe Api::V1::CarsController, type: :controller do
     end
   end
 
+  describe 'PATCH #update' do
+    it 'returns the updated property on a car' do
+      car = cars.last
+      put :update, params: { id: car.id, car: { plate_number: 'YTEYT250' } }
+      expect(response).to have_http_status(:ok)
+      car.reload
+      expect(car.plate_number).to eq('YTEYT250')
+    end
+  end
+
   describe 'GET #destroy' do
     it 'returns http success after deleting a record' do
       car = cars.last
