@@ -6,3 +6,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+cars = FactoryBot.create_list(:car, 10)
+
+cars.each do |car|
+  FactoryBot.create_list(:car_maintenance, 5, car: car)
+end
